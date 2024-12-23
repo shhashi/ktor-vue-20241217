@@ -1,16 +1,15 @@
-import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsPlugin.Companion.kotlinNodeJsEnvSpec
-
 plugins {
-    application
-    kotlin("jvm") version "2.1.0"
-    id("com.github.node-gradle.node") version "3.5.1"
-
-    // 依存関係にあるライブラリを含んだ fat jar を作成するために必要
-//    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("org.jetbrains.kotlin.jvm") version "2.1.0"
+    id("io.ktor.plugin") version "3.0.2"
 }
 
-group = "shhashi.service.diary.database.elasticsearch.templates"
+group = "shhashi.practice.i20241217"
 version = "0.0.1-SNAPSHOT"
+
+ext {
+    set("kotlinVersion", "2.1.0")
+    set("ktorVersion", "3.0.2")
+}
 
 java {
     toolchain {
@@ -19,7 +18,7 @@ java {
 }
 
 application {
-    mainClass.set("shhashi.service.diary.database.elasticsearch.templates.DairyServiceElasticsearchTemplatesMaintenanceApplication.kt")
+    mainClass.set("io.ktor.server.netty.EngineMain")
 }
 
 repositories {
@@ -28,8 +27,17 @@ repositories {
 
 dependencies {
     implementation(kotlin("reflect"))
-    implementation("co.elastic.clients:elasticsearch-java:8.16.1")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+
+    implementation("io.ktor:ktor-server-core-jvm:${ext.properties["ktorVersion"]}")
+    implementation("io.ktor:ktor-server-netty-jvm:${ext.properties["ktorVersion"]}")
+    implementation("io.ktor:ktor-server-config-yaml-jvm:${ext.properties["ktorVersion"]}")
+    implementation("io.ktor:ktor-server-test-host-jvm:${ext.properties["ktorVersion"]}")
+    implementation("ch.qos.logback:logback-classic:1.5.15")
+
+    implementation("io.ktor:ktor-server-thymeleaf:${ext.properties["ktorVersion"]}")
+    implementation("org.thymeleaf:thymeleaf:3.1.3.RELEASE")
+
 }
 
 tasks.withType<Test> {

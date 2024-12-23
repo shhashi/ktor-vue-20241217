@@ -1,3 +1,2 @@
 # vue プロジェクトビルド時の生成物を無視する
-dist
-dist-ssr
+static/app

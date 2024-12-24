@@ -1,2 +1,2 @@
 # vue プロジェクトビルド時の生成物を無視する
-static/app
+src/main/resources/static/app

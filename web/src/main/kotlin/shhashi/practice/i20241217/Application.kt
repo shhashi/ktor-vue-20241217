@@ -13,7 +13,7 @@ fun main(args: Array<String>) {
 
 fun Application.module() {
     val templateResolver = ClassLoaderTemplateResolver().apply {
-        prefix = "/static/"
+        prefix = "/template/"
         suffix = ".html"
         characterEncoding = "UTF-8"
     }
@@ -26,7 +26,7 @@ fun Application.module() {
         staticResources("/static", "static")
 
         get("/") {
-            call.respond(ThymeleafContent("template/inputs", emptyMap()))
+            call.respond(ThymeleafContent("inputs", emptyMap()))
         }
     }
 }

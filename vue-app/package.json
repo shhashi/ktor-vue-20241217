@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc -b && vite build && rsync -a --delete dist/ ../web/src/main/resources/static/app/",
+    "build": "vue-tsc -b && vite build && mkdir -p ../web/src/main/resources/static/app/ && rsync -a --delete dist/ ../web/src/main/resources/static/app/",
     "preview": "vite preview"
   },
   "dependencies": {
